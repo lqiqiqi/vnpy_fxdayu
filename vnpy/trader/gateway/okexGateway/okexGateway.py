@@ -221,7 +221,6 @@ class OkexGateway(VtGateway):
     #----------------------------------------------------------------------
     def qryPosition(self):
         """查询持仓"""
-        # self.futuresApi.futuresUserInfo()
         pass
     #------------------------------------------------
     def qryAllOrders(self, vtSymbol, order_id, status= None):
@@ -1667,6 +1666,7 @@ class FuturesApi(OkexFuturesApi):
             qrysymbol = symbol[:3]+'_usd'
             idlist = ','.join(qryDict[symbol][:50])       # OKEX 支持50个订单的批量查询
             self.batchQryOrder(qrysymbol,contract_type,idlist)  
+            self.rest_futures_position(symbol[:3],contract_type)
         if qryDict:  
             self.writeLog(u'对本地挂单的exchangeorderid批量轮询，(品种字典：%s)'%qryDict)
         del qryDict

@@ -392,19 +392,19 @@ class CtaEngine(object):
         if trade.vtOrderID in self.orderStrategyDict:
             strategy = self.orderStrategyDict[trade.vtOrderID]
 
-            # 计算策略持仓
-            if trade.direction == DIRECTION_LONG and trade.offset == OFFSET_OPEN:
-                posName = trade.vtSymbol + "_LONG"
-                strategy.posDict[str(posName)] += trade.volume
-            elif trade.direction == DIRECTION_LONG and trade.offset == OFFSET_CLOSE:
-                posName = trade.vtSymbol + "_SHORT"
-                strategy.posDict[str(posName)] -= trade.volume
-            elif trade.direction ==DIRECTION_SHORT and trade.offset == OFFSET_CLOSE:
-                posName = trade.vtSymbol + "_LONG"
-                strategy.posDict[str(posName)] -= trade.volume
-            elif trade.direction ==DIRECTION_SHORT and trade.offset == OFFSET_OPEN:
-                posName = trade.vtSymbol + "_SHORT"
-                strategy.posDict[str(posName)] += trade.volume
+            # # 计算策略持仓
+            # if trade.direction == DIRECTION_LONG and trade.offset == OFFSET_OPEN:
+            #     posName = trade.vtSymbol + "_LONG"
+            #     strategy.posDict[str(posName)] += trade.volume
+            # elif trade.direction == DIRECTION_LONG and trade.offset == OFFSET_CLOSE:
+            #     posName = trade.vtSymbol + "_SHORT"
+            #     strategy.posDict[str(posName)] -= trade.volume
+            # elif trade.direction ==DIRECTION_SHORT and trade.offset == OFFSET_CLOSE:
+            #     posName = trade.vtSymbol + "_LONG"
+            #     strategy.posDict[str(posName)] -= trade.volume
+            # elif trade.direction ==DIRECTION_SHORT and trade.offset == OFFSET_OPEN:
+            #     posName = trade.vtSymbol + "_SHORT"
+            #     strategy.posDict[str(posName)] += trade.volume
 
             self.callStrategyFunc(strategy, strategy.onTrade, trade)
     #----------------------------------
